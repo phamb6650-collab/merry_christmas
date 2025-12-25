@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Christmas!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Quicksand:wght@500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #a80000, #d31027, #ea384d);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Quicksand', sans-serif;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.2);
+            max-width: 90%;
+        }
+
+        h1 {
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 4rem;
+            margin: 0;
+            color: #ffffff;
+            text-shadow: 0 0 10px #ffff00, 0 0 20px #0dff00;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+
+        /* Cây thông Noel bằng CSS */
+        .tree-container {
+            position: relative;
+            width: 140px;
+            height: 180px;
+            margin: 20px auto;
+        }
+
+        .tree-part {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-left-color: transparent;
+            border-right-color: transparent;
+            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.3));
+        }
+
+        .tree-part.layer1 { 
+            top: 0; z-index: 4; 
+            border-width: 0 25px 35px 25px; border-bottom-color: #4cd137; 
+        }
+        .tree-part.layer2 { 
+            top: 25px; z-index: 3; 
+            border-width: 0 35px 45px 35px; border-bottom-color: #44bd32; 
+        }
+        .tree-part.layer3 { 
+            top: 55px; z-index: 2; 
+            border-width: 0 45px 55px 45px; border-bottom-color: #009432; 
+        }
+        .tree-part.layer4 { 
+            top: 90px; z-index: 1; 
+            border-width: 0 55px 65px 55px; border-bottom-color: #006400; 
+        }
+
+        .star {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ffd700;
+            font-size: 50px;
+            animation: star-shine 1s ease-in-out infinite alternate;
+            z-index: 10;
+            text-shadow: 0 0 10px #fff, 0 0 20px #ffd700, 0 0 30px #ff8c00;
+        }
+
+        .star::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120px;
+            height: 120px;
+            background: repeating-conic-gradient(
+                rgba(255, 215, 0, 0) 0deg,
+                rgba(255, 215, 0, 0) 10deg,
+                rgba(255, 215, 0, 0.8) 15deg,
+                rgba(255, 215, 0, 0) 20deg
+            );
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: spin-rays 10s linear infinite;
+            -webkit-mask-image: radial-gradient(circle, black 10%, transparent 70%);
+            mask-image: radial-gradient(circle, black 10%, transparent 70%);
+        }
+
+        .trunk {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 26px;
+            height: 30px;
+            background: linear-gradient(to right, #795548, #5d4037);
+            z-index: 0;
+        }
+
+        .pot {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 20px;
+            background: #c0392b;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            z-index: 0;
+        }
+
+        /* Quả châu trang trí */
+        .ornament {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            z-index: 5;
+            animation: blink 1s infinite alternate;
+            box-shadow: 0 0 5px rgba(255,255,255,0.5);
+        }
+
+        /* Hiệu ứng tuyết rơi */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(105vh);
+            }
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #fff, 0 0 20px #fff; }
+            to { text-shadow: 0 0 20px #ffeb3b, 0 0 30px #ffeb3b, 0 0 40px #ffeb3b; }
+        }
+
+        @keyframes blink {
+            0% { opacity: 0.5; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.3); }
+        }
+
+        @keyframes star-shine {
+            from { transform: translateX(-50%) scale(1); text-shadow: 0 0 10px #fff, 0 0 20px #ffd700; }
+            to { transform: translateX(-50%) scale(1.2); text-shadow: 0 0 30px #fff, 0 0 60px #ffeb3b, 0 0 80px #ff8c00; }
+        }
+
+        @keyframes spin-rays {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Hộp quà bí ẩn */
+        .gift-section {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .gift {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            transform-style: preserve-3d;
+        }
+
+        .gift:hover {
+            animation: shake 0.5s ease-in-out infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        .gift-box {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 80%;
+            background: linear-gradient(to bottom right, #e74c3c, #c0392b);
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+
+        .gift-lid {
+            position: absolute;
+            top: 10%;
+            left: -10%;
+            width: 120%;
+            height: 25%;
+            background: #c0392b;
+            border-radius: 5px;
+            z-index: 11;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            transition: transform 0.5s ease-out, opacity 0.3s;
+        }
+
+        .ribbon {
+            position: absolute;
+            background: #f1c40f;
+            box-shadow: 0 0 5px rgba(241, 196, 15, 0.5);
+        }
+
+        .ribbon-v { width: 10px; height: 100%; left: 50%; transform: translateX(-50%); }
+        .ribbon-h { width: 100%; height: 10px; top: 50%; transform: translateY(-50%); }
+
+        .gift-content {
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            width: 50px;
+            height: 60px;
+            background: #fffdf0;
+            color: #c0392b;
+            border: 1px solid #c0392b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 8px;
+            border-radius: 3px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 5;
+            opacity: 0;
+        }
+
+        .gift.open .gift-lid {
+            transform: translateY(-60px) rotate(-20deg);
+            opacity: 0;
+        }
+
+        .gift.open .gift-content {
+            transform: translateX(-50%) translateY(-50px) scale(1);
+            opacity: 1;
+        }
+
+        /* Hiệu ứng pháo hoa */
+        .firework-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            z-index: 100;
+            pointer-events: none;
+            animation: explode 1s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
+        }
+
+        /* Hộp quà cuối cùng */
+        #final-gift-container {
+            margin-top: 40px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 1s ease;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        #final-gift-container.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Tờ giấy điều ước */
+        .wish-paper {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 300px;
+            background: #fff9c4;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 1000;
+            text-align: center;
+            color: #5d4037;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .wish-paper.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .wish-paper input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            font-family: 'Quicksand', sans-serif;
+            box-sizing: border-box;
+        }
+        
+        .wish-paper button {
+            margin-top: 15px;
+            padding: 8px 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        /* Hiệu ứng điều ước bay lên */
+        .flying-wish {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 2.5rem;
+            font-family: 'Mountains of Christmas', cursive;
+            text-shadow: 0 0 10px #f1c40f, 0 0 20px #e74c3c;
+            pointer-events: none;
+            z-index: 2000;
+            white-space: nowrap;
+            animation: flyUp 4s ease-out forwards;
+        }
+
+        @keyframes flyUp {
+            0% { top: 50%; opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            100% { top: -10%; opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+        }
+
+        /* Modal Thiệp Giáng Sinh */
+        .card-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 3000;
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .card-overlay.active { opacity: 1; visibility: visible; }
+        .christmas-card {
+            background: #fffdf0;
+            width: 90%; max-width: 400px;
+            padding: 10px;
+            border-radius: 15px;
+            position: relative;
+            transform: scale(0.5);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid #c0392b;
+            background-image: radial-gradient(#c0392b 15%, transparent 16%), radial-gradient(#27ae60 15%, transparent 16%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+        .card-overlay.active .christmas-card { transform: scale(1); }
+        .christmas-card-inner {
+            background: #fff;
+            padding: 30px 20px;
+            border-radius: 10px;
+            border: 1px dashed #c0392b;
+            text-align: center;
+        }
+        .card-text {
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 2.5rem;
+            color: #c0392b;
+            margin: 0;
+            line-height: 1.4;
+        }
+        .close-btn {
+            position: absolute; top: -15px; right: -15px;
+            background: #c0392b; color: white;
+            width: 35px; height: 35px;
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 20px; cursor: pointer;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        /* Tuyết trong thiệp */
+        .card-snow-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            overflow: hidden;
+            border-radius: 15px;
+            pointer-events: none;
+            z-index: 5;
+        }
+        .card-snowflake {
+            position: absolute; top: -10px; background: #e74c3c;
+            border-radius: 50%; opacity: 0.6; pointer-events: none;
+            animation: cardFall linear infinite;
+        }
+        @keyframes cardFall { to { transform: translateY(400px); } }
+
+        /* Danh sách điều ước */
+        .wish-list-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            z-index: 2900;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: transform 0.2s;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(255,255,255,0.2);
+        }
+        .wish-list-btn:hover { transform: scale(1.1); background: rgba(255,255,255,0.3); }
+
+        .wish-list-panel {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 300px;
+            max-height: 400px;
+            background: rgba(0, 0, 0, 0.85);
+            border-radius: 15px;
+            padding: 20px;
+            z-index: 2900;
+            color: white;
+            display: none;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        .wish-list-panel.show { display: flex; animation: fadeIn 0.3s ease; }
+        .wish-list-panel h3 { margin-top: 0; font-family: 'Mountains of Christmas', cursive; color: #f1c40f; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; }
+        #wishes-content { flex: 1; overflow-y: auto; margin-bottom: 10px; text-align: left; max-height: 300px; }
+        .wish-item { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; word-wrap: break-word; }
+        .wish-item:last-child { border-bottom: none; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .wish-btn {
+            margin-top: 10px;
+            padding: 8px;
+            width: 100%;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+        }
+        .wish-btn:hover { background: #2ecc71; }
+        
+        .delete-btn {
+            float: right;
+            cursor: pointer;
+            margin-left: 5px;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+        .delete-btn:hover { opacity: 1; }
+
+        /* Phần tương tác (Like, Reply) */
+        .wish-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: #ddd;
+            align-items: center;
+        }
+        .action-btn {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.2s;
+        }
+        .action-btn:hover { color: #fff; }
+        .like-icon { color: #e74c3c; }
+        
+        .replies-container {
+            margin-top: 8px;
+            padding-left: 10px;
+            border-left: 2px solid rgba(255,255,255,0.2);
+        }
+        .reply-item {
+            font-size: 0.85rem;
+            margin-top: 5px;
+            background: rgba(255,255,255,0.1);
+            padding: 5px 8px;
+            border-radius: 4px;
+        }
+        .admin-badge {
+            background: #f1c40f;
+            color: #c0392b;
+            font-size: 0.7rem;
+            padding: 1px 4px;
+            border-radius: 3px;
+            font-weight: bold;
+            margin-right: 5px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* Dây đèn trang trí */
+        .lights-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            z-index: 99;
+            display: flex;
+            justify-content: space-around;
+            pointer-events: none;
+        }
+        
+        .light-bulb {
+            position: relative;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            top: -5px;
+            animation: lightFlash 1s infinite alternate;
+        }
+        
+        .light-bulb::before { content: ''; position: absolute; top: -3px; left: 50%; transform: translateX(-50%); width: 4px; height: 5px; background: #222; }
+
+        @keyframes lightFlash {
+            from { opacity: 0.4; box-shadow: 0 0 2px currentColor; transform: translateY(0); }
+            to { opacity: 1; box-shadow: 0 2px 15px currentColor; transform: translateY(3px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="tree-container">
+            <div class="star">★</div>
+            <div class="ornament" style="top: 35px; left: 50%; background: #e74c3c; animation-delay: 0s;"></div>
+            <div class="ornament" style="top: 60px; left: 42%; background: #f1c40f; animation-delay: 0.5s;"></div>
+            <div class="ornament" style="top: 60px; left: 58%; background: #3498db; animation-delay: 0.2s;"></div>
+            <div class="ornament" style="top: 90px; left: 35%; background: #9b59b6; animation-delay: 0.7s;"></div>
+            <div class="ornament" style="top: 90px; left: 65%; background: #e67e22; animation-delay: 0.3s;"></div>
+            <div class="ornament" style="top: 120px; left: 30%; background: #fff; animation-delay: 0.1s;"></div>
+            <div class="ornament" style="top: 120px; left: 70%; background: #e74c3c; animation-delay: 0.6s;"></div>
+            <div class="ornament" style="top: 125px; left: 50%; background: #f1c40f; animation-delay: 0.4s;"></div>
+            <div class="tree-part layer1"></div>
+            <div class="tree-part layer2"></div>
+            <div class="tree-part layer3"></div>
+            <div class="tree-part layer4"></div>
+            <div class="trunk"></div>
+            <div class="pot"></div>
+        </div>
+        <h1 ondblclick="adminLogin()" style="cursor: default;" title="Merry Christmas!">Merry Christmas</h1>
+        <p>Chúc bạn một mùa Giáng sinh an lành,<br>ấm áp và tràn đầy hạnh phúc bên người thân!</p>
+        
+        <div class="gift-section">
+            <!-- Hộp quà 1: Đỏ - Vàng -->
+            <div class="gift initial-gift" onclick="handleGiftClick(this, 'Giáng sinh<br>An lành')">
+                <div class="gift-lid"><div class="ribbon ribbon-v"></div><div class="ribbon ribbon-h"></div></div>
+                <div class="gift-box"><div class="ribbon ribbon-v"></div></div>
+            </div>
+            
+            <!-- Hộp quà 2: Xanh lá - Đỏ -->
+            <div class="gift initial-gift" onclick="handleGiftClick(this, 'Tràn đầy<br>Niềm vui')">
+                <div class="gift-lid" style="background: #27ae60;"><div class="ribbon ribbon-v" style="background: #e74c3c;"></div><div class="ribbon ribbon-h" style="background: #e74c3c;"></div></div>
+                <div class="gift-box" style="background: linear-gradient(to bottom right, #2ecc71, #27ae60);"><div class="ribbon ribbon-v" style="background: #e74c3c;"></div></div>
+            </div>
+            
+            <!-- Hộp quà 3: Xanh dương - Trắng -->
+            <div class="gift initial-gift" onclick="handleGiftClick(this, 'Hạnh phúc<br>Đong đầy')">
+                <div class="gift-lid" style="background: #2980b9;"><div class="ribbon ribbon-v" style="background: #ecf0f1;"></div><div class="ribbon ribbon-h" style="background: #ecf0f1;"></div></div>
+                <div class="gift-box" style="background: linear-gradient(to bottom right, #3498db, #2980b9);"><div class="ribbon ribbon-v" style="background: #ecf0f1;"></div></div>
+            </div>
+        </div>
+
+        <!-- Hộp quà cuối cùng -->
+        <div id="final-gift-container">
+            <div class="gift" onclick="openFinalGift(this)" style="width: 80px; height: 80px;">
+                <div class="gift-lid" style="background: #8e44ad;"><div class="ribbon ribbon-v" style="background: #f1c40f;"></div><div class="ribbon ribbon-h" style="background: #f1c40f;"></div></div>
+                <div class="gift-box" style="background: linear-gradient(to bottom right, #9b59b6, #8e44ad);"><div class="ribbon ribbon-v" style="background: #f1c40f;"></div></div>
+            </div>
+        </div>
+
+        <!-- Tờ giấy điều ước -->
+        <div class="wish-paper" id="wish-paper">
+            <h2 style="font-family: 'Mountains of Christmas', cursive; color: #c0392b; margin: 0 0 15px 0;">Điều ước Giáng sinh</h2>
+            <p>Bạn muốn có gì vào mùa giáng sinh này?</p>
+            <input type="text" placeholder="Nhập điều ước của bạn...">
+            <button onclick="sendWish()">Gửi ông già Noel</button>
+        </div>
+
+        <!-- Modal Thiệp -->
+        <div class="card-overlay" id="card-overlay">
+            <div class="christmas-card">
+                <div class="card-snow-container" id="card-snow-container"></div>
+                <div class="close-btn" onclick="closeCard()">×</div>
+                <div class="christmas-card-inner">
+                    <div class="card-text" id="card-message"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nút và bảng danh sách điều ước -->
+        <div class="wish-list-btn" onclick="toggleWishList()" title="Xem điều ước của mọi người">📜</div>
+        <div class="wish-list-panel" id="wish-list-panel">
+            <h3>Lời chúc từ mọi người</h3>
+            <div id="wishes-content"></div>
+        </div>
+    </div>
+
+    <!-- Thêm thư viện Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+    <script>
+        // Kiểm tra trạng thái Admin từ phiên làm việc
+        let isAdmin = sessionStorage.getItem('isAdmin') === 'true';
+
+        // --- CẤU HÌNH FIREBASE ---
+        // 1. Truy cập https://console.firebase.google.com/
+        // 2. Tạo project mới -> Chọn "Realtime Database" -> Tạo database (chọn Test Mode để ai cũng ghi được)
+        // 3. Vào Project Settings -> General -> Kéo xuống dưới chọn "Config" -> Copy nội dung vào bên dưới:
+        const firebaseConfig = {
+            apiKey: "API_KEY_CUA_BAN",
+            authDomain: "PROJECT_ID.firebaseapp.com",
+            databaseURL: "https://PROJECT_ID-default-rtdb.firebaseio.com",
+            projectId: "PROJECT_ID",
+            storageBucket: "PROJECT_ID.appspot.com",
+            messagingSenderId: "SENDER_ID",
+            appId: "APP_ID"
+        };
+
+        // Khởi tạo Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+        const wishesRef = db.ref('wishes');
+
+        let cardSnowInterval;
+
+        // Hàm đăng nhập Admin ẩn
+        function adminLogin() {
+            const pass = prompt("Nhập mật khẩu quản trị:");
+            if (pass === "tombumdiboi0192837465") {
+                sessionStorage.setItem('isAdmin', 'true');
+                alert("Xin chào Admin! 🎅");
+                location.reload(); // Tải lại trang để cập nhật giao diện
+            }
+        }
+
+        if (isAdmin) {
+            document.querySelector('.wish-list-btn').style.display = 'flex';
+        }
+
+        // Lắng nghe dữ liệu thật từ Firebase
+        if (isAdmin) {
+            wishesRef.on('value', (snapshot) => {
+            const data = snapshot.val();
+            const container = document.getElementById('wishes-content');
+            container.innerHTML = '';
+            
+            if (data) {
+                const entries = Object.entries(data);
+                // Đảo ngược để tin mới nhất lên đầu
+                entries.reverse().forEach(([key, item]) => {
+                    const div = document.createElement('div');
+                    div.classList.add('wish-item');
+                    
+                    // Kiểm tra nếu dữ liệu là object (mới) hay string (cũ)
+                    let text = (typeof item === 'object' && item !== null) ? item.text : item;
+
+                    // Nút xóa
+                    if (isAdmin) {
+                        const deleteBtn = document.createElement('span');
+                        deleteBtn.textContent = '❌';
+                        deleteBtn.classList.add('delete-btn');
+                        deleteBtn.title = 'Xóa';
+                        deleteBtn.onclick = () => deleteWish(key);
+                        div.appendChild(deleteBtn);
+                    }
+
+                    // Nếu có thời gian thì hiển thị
+                    if (typeof item === 'object' && item.time) {
+                        const date = new Date(item.time);
+                        const timeStr = `${date.getHours()}:${String(date.getMinutes()).padStart(2, '0')} ${date.getDate()}/${date.getMonth() + 1}`;
+                        
+                        const timeSpan = document.createElement('span');
+                        timeSpan.textContent = timeStr;
+                        timeSpan.style.cssText = "font-size: 0.75em; color: #bbb; float: right; margin-left: 8px;";
+                        div.appendChild(timeSpan);
+                    }
+                    
+                    div.appendChild(document.createTextNode(text));
+                    
+                    // --- PHẦN TƯƠNG TÁC (Like & Reply) ---
+                    const actionsDiv = document.createElement('div');
+                    actionsDiv.classList.add('wish-actions');
+                    
+                    // Nút Like
+                    const likes = (item.likes || 0);
+                    const likeBtn = document.createElement('div');
+                    likeBtn.classList.add('action-btn');
+                    likeBtn.innerHTML = `<span class="like-icon">❤️</span> ${likes}`;
+                    likeBtn.onclick = () => handleLike(key, likes);
+                    actionsDiv.appendChild(likeBtn);
+
+                    // Nút Reply (Chỉ Admin mới thấy nút trả lời)
+                    if (isAdmin) {
+                        const replyBtn = document.createElement('div');
+                        replyBtn.classList.add('action-btn');
+                        replyBtn.innerHTML = `💬 Trả lời`;
+                        replyBtn.onclick = () => {
+                            const replyText = prompt("Nhập câu trả lời của Admin:");
+                            if(replyText) sendReply(key, replyText);
+                        };
+                        actionsDiv.appendChild(replyBtn);
+                    }
+                    div.appendChild(actionsDiv);
+
+                    // Hiển thị các câu trả lời
+                    if (item.replies) {
+                        const repliesContainer = document.createElement('div');
+                        repliesContainer.classList.add('replies-container');
+                        Object.values(item.replies).forEach(rep => {
+                            const repDiv = document.createElement('div');
+                            repDiv.classList.add('reply-item');
+                            
+                            // Badge Admin
+                            if (rep.isAdmin) {
+                                repDiv.innerHTML = `<span class="admin-badge">ADMIN</span> ${rep.text}`;
+                            } else {
+                                repDiv.textContent = rep.text;
+                            }
+                            repliesContainer.appendChild(repDiv);
+                        });
+                        div.appendChild(repliesContainer);
+                    }
+                    
+                    container.appendChild(div);
+                });
+            } else {
+                container.innerHTML = '<div class="wish-item" style="text-align:center; font-style:italic;">Chưa có điều ước nào.<br>Hãy là người đầu tiên!</div>';
+            }
+            });
+        }
+
+        function deleteWish(key) {
+            if(confirm("Bạn có chắc muốn xóa điều ước này?")) {
+                wishesRef.child(key).remove();
+            }
+        }
+
+        function handleLike(key, currentLikes) {
+            wishesRef.child(key).child('likes').set(currentLikes + 1);
+        }
+
+        function sendReply(key, text) {
+            wishesRef.child(key).child('replies').push({
+                text: text,
+                isAdmin: true,
+                time: Date.now()
+            });
+        }
+
+        function handleGiftClick(element, message) {
+            if (!element.classList.contains('open')) {
+                element.classList.add('open');
+                const rect = element.getBoundingClientRect();
+                // Tính toạ độ tâm của hộp quà
+                const x = rect.left + rect.width / 2;
+                const y = rect.top + rect.height / 2;
+                createFirework(x, y);
+
+                // Tự động phóng to thiệp sau khi mở hộp (0.8 giây)
+                setTimeout(() => {
+                    showCard(message);
+                }, 800);
+
+                // Kiểm tra xem đã mở hết 3 hộp chưa
+                const openedGifts = document.querySelectorAll('.initial-gift.open');
+                if (openedGifts.length === 3) {
+                    setTimeout(() => {
+                        document.getElementById('final-gift-container').classList.add('show');
+                    }, 2000);
+                }
+            } else {
+                showCard(message);
+            }
+        }
+
+        function showCard(message) {
+            document.getElementById('card-message').innerHTML = message;
+            document.getElementById('card-overlay').classList.add('active');
+            
+            // Bắt đầu tạo tuyết trong thiệp
+            if (cardSnowInterval) clearInterval(cardSnowInterval);
+            cardSnowInterval = setInterval(createCardSnowflake, 100);
+        }
+
+        function closeCard() {
+            document.getElementById('card-overlay').classList.remove('active');
+            // Dừng tuyết
+            clearInterval(cardSnowInterval);
+            document.getElementById('card-snow-container').innerHTML = '';
+        }
+
+        function createCardSnowflake() {
+            const container = document.getElementById('card-snow-container');
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('card-snowflake');
+            
+            const size = Math.random() * 4 + 2 + 'px';
+            snowflake.style.width = size; snowflake.style.height = size;
+            snowflake.style.left = Math.random() * 100 + '%';
+            snowflake.style.animationDuration = (Math.random() * 2 + 1) + 's';
+            
+            container.appendChild(snowflake);
+            
+            setTimeout(() => { snowflake.remove(); }, 3000);
+        }
+
+        function openFinalGift(element) {
+            if (!element.classList.contains('open')) {
+                element.classList.add('open');
+                const rect = element.getBoundingClientRect();
+                createFirework(rect.left + rect.width/2, rect.top + rect.height/2);
+                
+                setTimeout(() => {
+                    document.getElementById('wish-paper').classList.add('show');
+                }, 800);
+            }
+        }
+
+        function openWishPaper() {
+            document.getElementById('wish-list-panel').classList.remove('show');
+            document.getElementById('wish-paper').classList.add('show');
+        }
+
+        function toggleWishList() {
+            const panel = document.getElementById('wish-list-panel');
+            panel.classList.toggle('show');
+        }
+
+        function sendWish() {
+            const input = document.querySelector('.wish-paper input');
+            const wishText = input.value.trim();
+            
+            if (wishText) {
+                // Ẩn tờ giấy đi
+                document.getElementById('wish-paper').classList.remove('show');
+                
+                // Gửi lên Firebase (Lưu dữ liệu thật)
+                wishesRef.push({
+                    text: wishText,
+                    time: Date.now()
+                });
+                
+                // Mở bảng danh sách
+                if(isAdmin) {
+                    if(!document.getElementById('wish-list-panel').classList.contains('show')) {
+                        document.getElementById('wish-list-panel').classList.add('show'); // Đảm bảo nó vẫn mở
+                    }
+                }
+
+                // Tạo phần tử chữ bay lên
+                const wishEl = document.createElement('div');
+                wishEl.classList.add('flying-wish');
+                wishEl.textContent = wishText;
+                document.body.appendChild(wishEl);
+                
+                // Tạo pháo hoa nổ dọc đường bay của chữ
+                let count = 0;
+                const interval = setInterval(() => {
+                    const rect = wishEl.getBoundingClientRect();
+                    // Tạo pháo hoa ngẫu nhiên xung quanh chữ
+                    createFirework(rect.left + rect.width/2 + (Math.random() * 100 - 50), rect.top + rect.height/2);
+                    count++;
+                    if (count > 8) clearInterval(interval);
+                }, 400);
+                
+                setTimeout(() => {
+                    wishEl.remove();
+                }, 4000);
+            } else {
+                alert('Hãy nhập điều ước của bạn nhé! 🎅');
+            }
+        }
+
+        function createLights() {
+            const container = document.createElement('div');
+            container.classList.add('lights-container');
+            
+            const colors = ['#e74c3c', '#f1c40f', '#3498db', '#2ecc71', '#9b59b6'];
+            
+            for(let i=0; i<30; i++) {
+                const bulb = document.createElement('div');
+                bulb.classList.add('light-bulb');
+                bulb.style.backgroundColor = colors[i % colors.length];
+                bulb.style.color = colors[i % colors.length];
+                bulb.style.animationDuration = (Math.random() * 1 + 0.5) + 's';
+                bulb.style.animationDelay = (Math.random() * 1) + 's';
+                container.appendChild(bulb);
+            }
+            
+            document.body.appendChild(container);
+        }
+
+        function createFirework(x, y) {
+            const particleCount = 50;
+            const colors = ['#f1c40f', '#e74c3c', '#3498db', '#9b59b6', '#2ecc71', '#ffffff'];
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('firework-particle');
+                
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Tạo hướng bay ngẫu nhiên
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = Math.random() * 150 + 50;
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity;
+                
+                particle.style.setProperty('--x', `${tx}px`);
+                particle.style.setProperty('--y', `${ty}px`);
+                
+                document.body.appendChild(particle);
+                
+                setTimeout(() => particle.remove(), 1000);
+            }
+        }
+
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            
+            // Kích thước ngẫu nhiên
+            const size = Math.random() * 5 + 2 + 'px';
+            snowflake.style.width = size;
+            snowflake.style.height = size;
+            
+            // Vị trí ngang ngẫu nhiên
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            
+            // Thời gian rơi ngẫu nhiên
+            const duration = Math.random() * 3 + 2 + 's';
+            snowflake.style.animationDuration = duration;
+            
+            // Độ mờ ngẫu nhiên
+            snowflake.style.opacity = Math.random();
+
+            document.body.appendChild(snowflake);
+
+            // Xóa tuyết sau khi rơi xong để tránh nặng máy
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
+
+        // Tạo tuyết liên tục
+        setInterval(createSnowflake, 100);
+        
+        // Tạo dây đèn
+        createLights();
+    </script>
+</body>
+</html>
